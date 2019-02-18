@@ -10,6 +10,7 @@ class PrimerModulo(models.Model):
 	description = fields.Text()
 
 	responsable_id = fields.Many2one('res.users',ondelete = 'set null', string='Responsable', index=True)
+	prueba = fields.Char(string="Este campo es de una prueba")
 
 class session(models.Model):
 	_name = "course.session"
