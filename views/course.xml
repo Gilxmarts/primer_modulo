@@ -1,0 +1,94 @@
+<odoo>
+	
+	<record model="ir.ui.view" id="course_form_view">
+		<field name="name">course.form</field>
+		<field name="model">primer.modulo</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="name"></field>
+						<field name="responsable_id"></field>
+					</group>
+					<notebook>
+						<page string="Descripcion">
+							<field name="description"></field>
+						</page>
+						<page string="About">
+							This is an example of notebooks
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="course_tree_view">
+		<field name="name">course.tree</field>
+		<field name="model">primer.modulo</field>
+		<field name="arch" type="xml">
+			<tree string="Course tree">
+				<field name="name"></field>
+				<field name="responsable_id"></field>
+			</tree>
+		</field>
+	</record>
+
+	<record model="ir.actions.act_window" id="course_list_action">
+		<field name="name">Courses</field>
+		<field name="res_model">primer.modulo</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="xml">
+			<p class="oe_view_nocontent_smiling_face">Create the first course</p>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="course_form_search">
+		<field name="name">course.search</field>
+		<field name="model">primer.modulo</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name"></field>
+				<field name="description"></field>
+			</search>
+		</field>
+	</record>
+
+	<menuitem id="main_primer_modulo" name="Open academy" />
+	<menuitem id="primer_modulo_menu" name="Open academy" parent="main_primer_modulo"/>	
+	<menuitem id="course_main" name="Course" parent="primer_modulo_menu" action="course_list_action"/>
+	
+	<record model="ir.ui.view" id="session_form_view">
+		<field name="name">Sessions</field>
+		<field name="model">course.session</field>
+		<field name="arch" type="xml">
+			<form string="Session form">
+				<sheet>
+					<group>
+						<group string="General">
+							<field name="course_id"></field>
+							<field name="name"></field>
+							<field name="instructor_id"></field>
+						</group>
+						<group string="Schedule">
+							<field name="name"></field>
+							<field name="start_date"></field>
+							<field name="duration"></field>
+							<field name="seats"></field>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.actions.act_window" id="session_list_action">
+		<field name="name">Sessions</field>
+		<field name="res_model">course.session</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem id="session_menu" name="Sessions" parent="primer_modulo_menu" action="session_list_action"/>
+</odoo>
